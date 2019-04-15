@@ -17,5 +17,13 @@ class CategoryController extends AppController
         return $this->render('index', compact('hits'));
     }
 
+    public function actionView($id)
+    {
+        //Получил номер категории
+        $id = Yii::$app->request->get('id');
+        //Получил все продукты по заданной категории
+        $products = Product::find()->where(['category_id' => $id])->all();
+        return $this->render('view', compact('products'));
+    }
 
 }
