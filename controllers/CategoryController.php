@@ -14,16 +14,23 @@ class CategoryController extends AppController
         //Выбор товаров являющихся хитами
         $hits = Product::find()->where(['hit' => '1'])->limit(6)->all();
 
+        $this->setMeta('E_SHOPPER');
+
         return $this->render('index', compact('hits'));
     }
 
     public function actionView($id)
     {
-        //Получил номер категории
+        //Получили номер категории
         $id = Yii::$app->request->get('id');
-        //Получил все продукты по заданной категории
+        //Получили все продукты по заданной категории
         $products = Product::find()->where(['category_id' => $id])->all();
-        return $this->render('view', compact('products'));
+        //Получили все данные из выбранной категории
+        $category = Category::findOne($id);
+        //Устанавливаем метатеги
+        $this->setMeta('E-SHOPPER | ' . $category->name, $category->keywords, $category->description);
+
+        return $this->render('view', compact('products', 'category'));
     }
 
 }

@@ -5,7 +5,6 @@
 use yii\helpers\Html;
 use yii\web\View;
 
-$this->title = 'My Yii Application';
 ?>
 <section id="advertisement">
     <div class="container">
@@ -48,6 +47,7 @@ $this->title = 'My Yii Application';
                     </div><!--/price-range-->
 
                     <div class="shipping text-center"><!--shipping-->
+                        <?php echo \yii\helpers\Url::to('/')?>
                         <img src="/images/home/shipping.jpg" alt=""/>
                     </div><!--/shipping-->
 
@@ -56,7 +56,7 @@ $this->title = 'My Yii Application';
 
             <div class="col-sm-9 padding-right">
                 <div class="features_items"><!--features_items-->
-                    <h2 class="title text-center">Features Items</h2>
+                    <h2 class="title text-center"><?= $category->name ?></h2>
                     <?php if (!empty($products)): ?>
                         <?php $i = 0;
                         foreach ($products as $product): ?>
@@ -70,13 +70,6 @@ $this->title = 'My Yii Application';
                                             <a href="#" class="btn btn-default add-to-cart"><i
                                                         class="fa fa-shopping-cart"></i>Add to cart</a>
                                         </div>
-                                        <!--<div class="product-overlay">
-                                            <div class="overlay-content">
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                            </div>
-                                        </div>-->
                                         <?php if ($product->new): ?>
                                             <?= Html::img("@web/images/home/new.png", ['alt' => 'Новинка', 'class' => 'new']) ?>
                                         <?php endif ?>
