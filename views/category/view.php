@@ -4,6 +4,7 @@
 
 use yii\helpers\Html;
 use yii\web\View;
+use yii\widgets\LinkPager;
 
 ?>
 <section id="advertisement">
@@ -47,7 +48,7 @@ use yii\web\View;
                     </div><!--/price-range-->
 
                     <div class="shipping text-center"><!--shipping-->
-                        <?php echo \yii\helpers\Url::to('/')?>
+                        <?php echo \yii\helpers\Url::to('/') ?>
                         <img src="/images/home/shipping.jpg" alt=""/>
                     </div><!--/shipping-->
 
@@ -90,16 +91,22 @@ use yii\web\View;
                                 <div class="clearfix"></div>
                             <?php endif; ?>
                         <?php endforeach; ?>
+                        <div class="clearfix"></div>
+                        <?php echo LinkPager::widget([
+                            'pagination' => $pages,
+                        ]);
+                        ?>
                     <?php else : ?>
                         <h2>Здесь товаров пока нет...</h2>
                     <?php endif; ?>
-                    <div class="clearfix"></div>
-                    <ul class="pagination">
-                        <li class="active"><a href="">1</a></li>
-                        <li><a href="">2</a></li>
-                        <li><a href="">3</a></li>
-                        <li><a href="">&raquo;</a></li>
-                    </ul>
+
+
+                    <!--     <ul class="pagination">
+                             <li class="active"><a href="">1</a></li>
+                             <li><a href="">2</a></li>
+                             <li><a href="">3</a></li>
+                             <li><a href="">&raquo;</a></li>
+                         </ul>-->
                 </div><!--features_items-->
             </div>
         </div>

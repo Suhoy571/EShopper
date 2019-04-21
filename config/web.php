@@ -50,6 +50,8 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                //Более частные правила должны стоять выше чем общиие правила
+                'category/<id:\d+>/page/<page:\d+>' => 'category/view',
                 'category/<id:\d+>' => 'category/view'
             ],
         ],
