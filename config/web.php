@@ -53,7 +53,8 @@ $config = [
                 //Более частные правила должны стоять выше чем общиие правила
                 'category/<id:\d+>/page/<page:\d+>' => 'category/view',
                 'category/<id:\d+>' => 'category/view',
-                'product/<id:\d+>' => 'product/view'
+                'product/<id:\d+>' => 'product/view',
+                'search/' => 'category/search',
             ],
         ],
     ],

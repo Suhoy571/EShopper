@@ -10,7 +10,7 @@ use yii\web\HttpException;
 
 class ProductController extends AppController
 {
-    public function actionView($id)
+    public function actionView()
     {
         $id = Yii::$app->request->get('id');
         //Ленивая загрузка, получаем 1 продукт по идентификатору

@@ -260,11 +260,18 @@ a#scrollUp i {
     outline: medium none;
     padding-left: 10px;
     width: 155px;
-    background-image: url(../images/home/searchicon.png);
-    background-repeat: no-repeat;
-    background-position: 130px;
 }
 
+input[class='submitSearch'] {
+    position: relative;
+    background-image: url(../images/home/searchicon.png);
+    width: 33px;
+    background-repeat: no-repeat;
+    background-position: 10px;
+    top: 13px;
+    left: -33px;
+    height: 35px;
+}
 
 /*  Dropdown menu*/
 
