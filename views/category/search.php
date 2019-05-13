@@ -57,7 +57,7 @@ use yii\widgets\LinkPager;
 
             <div class="col-sm-9 padding-right">
                 <div class="features_items"><!--features_items-->
-                    <h2 class="title text-center">Вы искали: <?= $q ?></h2>
+                    <h2 class="title text-center">Вы искали: <?= Html::encode($q) ?></h2>
                     <?php if (!empty($products)): ?>
                         <?php $i = 0;
                         foreach ($products as $product): ?>
@@ -65,7 +65,7 @@ use yii\widgets\LinkPager;
                                 <div class="product-image-wrapper">
                                     <div class="single-products">
                                         <div class="productinfo text-center">
-                                            <?= Html::img("@web/images/products/{$product->img}", ['alt' => $hit->name]) ?>
+                                            <?= Html::img("@web/images/products/{$product->img}", ['alt' => $product->name]) ?>
                                             <h2>$<?= $product->price ?></h2>
                                             <p>
                                                 <a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $product->id]) ?>"> <?= $product->name ?></a>
@@ -99,16 +99,8 @@ use yii\widgets\LinkPager;
                         ]);
                         ?>
                     <?php else : ?>
-                        <h2>Здесь товаров пока нет...</h2>
+                        <h2>Ничего не найдено...</h2>
                     <?php endif; ?>
-
-
-                    <!--     <ul class="pagination">
-                             <li class="active"><a href="">1</a></li>
-                             <li><a href="">2</a></li>
-                             <li><a href="">3</a></li>
-                             <li><a href="">&raquo;</a></li>
-                         </ul>-->
                 </div><!--features_items-->
             </div>
         </div>

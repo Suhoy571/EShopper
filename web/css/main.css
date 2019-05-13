@@ -249,6 +249,10 @@ a#scrollUp i {
     color: #fdb45e;
 }
 
+.search_box.pull-right {
+    position: relative;
+}
+
 .search_box input {
     background: #F0F0E9;
     border: medium none;
@@ -263,14 +267,15 @@ a#scrollUp i {
 }
 
 input[class='submitSearch'] {
-    position: relative;
+    position: absolute;
     background-image: url(../images/home/searchicon.png);
     width: 33px;
     background-repeat: no-repeat;
     background-position: 10px;
-    top: 13px;
-    left: -33px;
+    top: 0px;
+    /* left: -33px; */
     height: 35px;
+    right: 0;
 }
 
 /*  Dropdown menu*/

@@ -51,7 +51,11 @@ class CategoryController extends AppController
     public function actionSearch()
     {
         //Получение запроса
-        $q = Yii::$app->request->get('q');
+        $q = trim(Yii::$app->request->get('q'));
+        $this->setMeta('E-SHOPPER | Поиск: ' . $q);
+        if (!$q) {
+            return $this->render('search');
+        }
 
         //Поиск по имени
         $query = Product::find()->where(['like', 'name', $q]);
