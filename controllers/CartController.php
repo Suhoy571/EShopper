@@ -49,5 +49,6 @@ class CartController extends AppController
 
         $cart = new Cart();
         $cart->addToCart($product);
+        debug($session['cart']);
     }
 }
