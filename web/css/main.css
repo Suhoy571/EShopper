@@ -253,6 +253,10 @@ a#scrollUp i {
     position: relative;
 }
 
+.del-item {
+    cursor: pointer;
+}
+
 .search_box input {
     background: #F0F0E9;
     border: medium none;
