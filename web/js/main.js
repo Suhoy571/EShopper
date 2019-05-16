@@ -6,6 +6,27 @@ $('.catalog').dcAccordion({
     speed: 300
 });
 
+function showCart(cart) {
+    //Вставили в элемент корзину
+    $('#cart .modal-body').html(cart);
+    $('#cart').modal();
+}
+
+function clearCart() {
+    $.ajax({
+        url: '/cart/clear',
+        type: 'GET',
+        success: function (res) {
+            if (!res)
+                alert('Ошибка!');
+            showCart(res);
+        },
+        error: function () {
+            alert('Error!');
+        }
+    });
+}
+
 $('.add-to-cart').on('click', function (e) {
     e.preventDefault();
     var id = $(this).data('id');
@@ -16,8 +37,7 @@ $('.add-to-cart').on('click', function (e) {
         success: function (res) {
             if (!res)
                 alert('Ошибка!');
-            console.log(res);
-            //showCart(res);
+            showCart(res);
         },
         error: function () {
             alert('Error!');

@@ -35,7 +35,7 @@ class CartController extends AppController
         $id = Yii::$app->request->get('id');
         //Получение продукта по id
         $product = Product::find()
-            ->select(['name', 'price', 'img'])
+            ->select(['name', 'price', 'img', 'id'])
             ->where(['id' => $id])
             ->one();
 
@@ -49,6 +49,23 @@ class CartController extends AppController
 
         $cart = new Cart();
         $cart->addToCart($product);
-        debug($session['cart']);
+//        debug($session['cart']);
+//        debug($session['cart.qty']);
+//        debug($session['cart.sum']);
+        $this->layout = false;
+        return $this->render('cart-modal', compact('session'));
+    }
+
+    public function actionClear()
+    {
+        //Старт сессии
+        $session = Yii::$app->session;
+        //Открытие сессии
+        $session->open();
+        $session->remove('cart');
+        $session->remove('cart.qty');
+        $session->remove('cart.sum');
+        $this->layout = false;
+        return $this->render('cart-modal', compact('session'));
     }
 }
