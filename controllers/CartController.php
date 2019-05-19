@@ -33,6 +33,10 @@ class CartController extends AppController
     {
         //Получение идентификатора товара
         $id = Yii::$app->request->get('id');
+        //Количество товара
+        $qty = (int)Yii::$app->request->get('qty');
+        //Проверка на наличие
+        $qty = ($qty == 0) ? 1 : $qty;
         //Получение продукта по id
         $product = Product::find()
             ->select(['name', 'price', 'img', 'id'])
@@ -48,10 +52,14 @@ class CartController extends AppController
         $session->open();
 
         $cart = new Cart();
-        $cart->addToCart($product);
-//        debug($session['cart']);
-//        debug($session['cart.qty']);
-//        debug($session['cart.sum']);
+        $cart->addToCart($product, $qty);
+
+        //Если данные получены не методом Ajax
+        if (!Yii::$app->request->isAjax) {
+            //Возврат на адрес с которого пришел пользователь
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+
         $this->layout = false;
         return $this->render('cart-modal', compact('session'));
     }
@@ -69,9 +77,11 @@ class CartController extends AppController
         return $this->render('cart-modal', compact('session'));
     }
 
-    public function actionDelItem() {
+    public function actionDelItem()
+    {
         //Получение идентификатора товара
         $id = Yii::$app->request->get('id');
+        //Старт сессии
         //Старт сессии
         $session = Yii::$app->session;
         //Открытие сессии
@@ -82,12 +92,18 @@ class CartController extends AppController
         return $this->render('cart-modal', compact('session'));
     }
 
-    public function actionShow() {
+    public function actionShow()
+    {
         //Получение идентификатора товара
         $session = Yii::$app->session;
         //Открытие сессии
         $session->open();
         $this->layout = false;
         return $this->render('cart-modal', compact('session'));
+    }
+
+    public function actionView()
+    {
+        return $this->render('view');
     }
 }

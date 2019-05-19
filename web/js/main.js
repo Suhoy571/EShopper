@@ -43,15 +43,15 @@ $('#cart .modal-body').on('click', '.del-item', function () {
     });
 });
 
-function getCart(){
+function getCart() {
     $.ajax({
         url: '/cart/show',
         type: 'GET',
-        success: function(res){
-            if(!res) alert('Ошибка!');
+        success: function (res) {
+            if (!res) alert('Ошибка!');
             showCart(res);
         },
-        error: function(){
+        error: function () {
             alert('Error!');
         }
     });
@@ -61,9 +61,10 @@ function getCart(){
 $('.add-to-cart').on('click', function (e) {
     e.preventDefault();
     var id = $(this).data('id');
+    var qty = $('#qty').val();
     $.ajax({
         url: '/cart/add',
-        data: {id: id},
+        data: {id: id, qty: qty},
         type: 'GET',
         success: function (res) {
             if (!res)
