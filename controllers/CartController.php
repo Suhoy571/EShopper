@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use app\models\Product;
 use app\models\Cart;
+use app\models\Order;
+use app\models\OrderItems;
 use Yii;
 
 /*Array
@@ -82,7 +84,6 @@ class CartController extends AppController
         //Получение идентификатора товара
         $id = Yii::$app->request->get('id');
         //Старт сессии
-        //Старт сессии
         $session = Yii::$app->session;
         //Открытие сессии
         $session->open();
@@ -104,6 +105,15 @@ class CartController extends AppController
 
     public function actionView()
     {
-        return $this->render('view');
+        //Старт сессии
+        $session = Yii::$app->session;
+        //Открытие сессии
+        $session->open();
+        $this->setMeta('Корзина');
+        $order = new Order();
+        if ($order->load(Yii::$app->request->post())) {
+            debug(Yii::$app->request->post());
+        }
+        return $this->render('view', compact('session', 'order'));
     }
 }
