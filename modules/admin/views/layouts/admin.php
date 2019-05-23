@@ -23,7 +23,7 @@ ltAppAsset::register($this);
         <meta charset="<?= Yii::$app->charset ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?= Html::csrfMetaTags() ?>
-        <title><?= Html::encode($this->title) ?></title>
+        <title>Админ | <?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
 
         <?php
@@ -109,12 +109,7 @@ ltAppAsset::register($this);
                                 <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                                 <li><a href="#" onclick="return getCart()"><i class="fa fa-shopping-cart"></i> Cart</a>
                                 </li>
-                                <li>
-                                    <a href="<?= Url::to(['/admin']) ?>">
-                                        <i class="fa fa-lock"></i>
-                                        Login
-                                    </a>
-                                </li>
+                                <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
                             </ul>
                         </div>
                     </div>
@@ -332,17 +327,6 @@ ltAppAsset::register($this);
         </div>
 
     </footer><!--/Footer-->
-
-    <?php Modal::begin([
-        'header' => '<h2>Корзина</h2>',
-        'id' => 'cart',
-        'size' => 'modal-lg',
-        'footer' => '<button type="button" class="btn btn-secondary" data-dismiss="modal">Продолжить покупки</button>
-        <a href="' . Url::to(['cart/view']) . '" type="button" class="btn btn-success">Оформить заказ</a>
-        <button type="button" class="btn btn-danger" onclick="clearCart()">Очистить корзину</button>',
-    ]);
-
-    Modal::end() ?>
 
     <?php $this->endBody() ?>
     </body>
