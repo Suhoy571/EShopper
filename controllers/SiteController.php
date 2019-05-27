@@ -71,11 +71,14 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        //Не гость ли позьвователь
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
 
+        //Экземпляр модели логинформ
         $model = new LoginForm();
+        //Загрузка данных в форму и выхов метода логин (логин - афторизует пользователя)
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         }
